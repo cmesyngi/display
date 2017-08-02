@@ -1,0 +1,7 @@
+<p>Container: {{container.name}}</p> 
+<button (click)="showChildren($event)">Show children</button>
+<button (click)="showDescendantChildren($event)">Show descendant children</button>
+<div *ngFor="let item of container" >
+  <app-container *ngIf="item.diType == 'container'" [container]="item"></app-container>
+  <app-symbol *ngIf="item.diType == 'symbol'" [symbol]="item"></app-symbol>
+</div>
