@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SymbolModel } from "../models/models";
+import { SymbolModel } from '../models/models';
 
 @Component({
   selector: 'app-symbol',

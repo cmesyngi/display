@@ -8,6 +8,7 @@ export class DisplayItemModel {
 }
 
 export class SymbolModel extends DisplayItemModel {
+  symbolType: string;
   constructor(name: string) {
     super('symbol', name);
   }
@@ -19,11 +20,11 @@ export class ContainerModel extends DisplayItemModel implements Iterable<Display
     super('container', name);
   }
 
-  symbols(): Array<SymbolModel>{
+  symbols(): Array<DisplayItemModel>{
     return this.children.filter(v =>  v instanceof SymbolModel);
   }
 
-  continers(): Array<SymbolModel>{
+  containers(): Array<DisplayItemModel>{
     return this.children.filter(v =>  v instanceof ContainerModel);
   }
 
@@ -34,6 +35,17 @@ export class ContainerModel extends DisplayItemModel implements Iterable<Display
         result.push(child);
       } else if (child instanceof ContainerModel){
         result.push(...child.descendantSymbols());
+      }
+    }
+    return result;
+  }
+
+  descendantContainers(): Array<ContainerModel> {
+    const result = new Array<ContainerModel>();
+    for (const child of this.children) {
+      if (child instanceof ContainerModel) {
+        result.push(child);
+        result.push(...child.descendantContainers());
       }
     }
     return result;

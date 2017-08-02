@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ContainerModel } from "../models/models";
+import { ContainerModel } from '../models/models';
 
 @Component({
   selector: 'app-container',
@@ -12,12 +12,20 @@ export class ContainerComponent implements OnInit {
 
   ngOnInit() {
   }
-  
-  showChildren(event: any) {
-    alert(this.container.symbols().map(s => s.name + ' '));
+
+  showSymbols(event: any) {
+    alert(this.container.symbols().map(s => s.name));
   }
 
-  showDescendantChildren(event: any) {
-    alert(this.container.descendantSymbols().map(s => s.name + ' '));
+  showDescendantSymbols(event: any) {
+    alert(this.container.descendantSymbols().map(s => s.name));
+  }
+
+  showContainers(event: any) {
+    alert(this.container.containers().map(s => s.name));
+  }
+
+  showDescendantContainers(event: any) {
+    alert(this.container.descendantContainers().map(s => s.name));
   }
 }
